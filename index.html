@@ -18,6 +18,53 @@
       background: #0a0a0a;
     }
 
+    .doc-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 14px 24px 18px;
+      background: linear-gradient(to top, rgba(0,0,0,0.82) 60%, transparent);
+      animation: fadeUp 1.4s 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .doc-nav a {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(220, 190, 120, 0.75);
+      padding: 6px 20px;
+      border: 1px solid rgba(200, 160, 60, 0.22);
+      border-radius: 2px;
+      transition: color 0.25s, border-color 0.25s, background 0.25s;
+      white-space: nowrap;
+    }
+
+    .doc-nav a:hover {
+      color: #f5e0a0;
+      border-color: rgba(220, 180, 80, 0.6);
+      background: rgba(200, 150, 40, 0.1);
+    }
+
+    .doc-nav .sep {
+      color: rgba(200, 160, 60, 0.3);
+      font-size: 0.65rem;
+      padding: 0 4px;
+      user-select: none;
+    }
+
     .stage {
       width: 100vw;
       height: 100vh;
@@ -127,5 +174,12 @@
       <img src="poster.png" alt="Jack and Diane: A Heartland Chronicle — Playbill">
     </div>
   </div>
+  <nav class="doc-nav">
+    <a href="synopsis.pdf" target="_blank">Synopsis</a>
+    <span class="sep">◆</span>
+    <a href="treatment.pdf" target="_blank">Treatment</a>
+    <span class="sep">◆</span>
+    <a href="lyrics.pdf" target="_blank">Original Lyrics</a>
+  </nav>
 </body>
 </html>
