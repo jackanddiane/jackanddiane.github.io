@@ -104,44 +104,92 @@
       z-index: 5;
     }
 
-    .poster-wrap {
+    .posters {
       position: relative;
-      height: 100vh;
-      max-height: 100vh;
-      width: auto;
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 2;
-      animation: rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+      gap: 28px;
+      height: 100vh;
+      padding: 0 32px 56px;
     }
 
-    @keyframes rise {
+    .poster-wrap {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+
+    .poster-wrap:first-child {
+      animation: riseLeft 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .poster-wrap:last-child {
+      animation: riseRight 1.1s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes riseLeft {
       from {
         opacity: 0;
-        transform: translateY(28px) scale(0.97);
+        transform: translateX(-24px) translateY(20px) scale(0.97);
         filter: brightness(0.4) blur(6px);
       }
       to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateX(0) translateY(0) scale(1);
+        filter: brightness(1) blur(0);
+      }
+    }
+
+    @keyframes riseRight {
+      from {
+        opacity: 0;
+        transform: translateX(24px) translateY(20px) scale(0.97);
+        filter: brightness(0.4) blur(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1);
         filter: brightness(1) blur(0);
       }
     }
 
     .poster-wrap img {
-      height: 100vh;
+      height: calc(100vh - 56px);
       width: auto;
-      max-width: 100vw;
+      max-width: 48vw;
       object-fit: contain;
       display: block;
-      /* Subtle warm lift */
       filter: contrast(1.04) saturate(1.06);
       box-shadow:
         0 0 0 1px rgba(255,255,255,0.04),
         0 8px 32px rgba(0,0,0,0.6),
         0 32px 80px rgba(0,0,0,0.5),
         0 0 120px rgba(200, 140, 30, 0.08);
+    }
+
+    /* Divider between posters */
+    .poster-divider {
+      width: 1px;
+      height: 60vh;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(200, 160, 60, 0.25) 30%,
+        rgba(200, 160, 60, 0.25) 70%,
+        transparent
+      );
+      flex-shrink: 0;
+      z-index: 2;
+      animation: fadeIn 1.6s 0.4s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
 
     /* Curtain-light edges */
@@ -170,8 +218,14 @@
   <div class="stage">
     <div class="light-left"></div>
     <div class="light-right"></div>
-    <div class="poster-wrap">
-      <img src="poster.png" alt="Jack and Diane: A Heartland Chronicle — Playbill">
+    <div class="posters">
+      <div class="poster-wrap">
+        <img src="poster.png" alt="Jack and Diane: A Heartland Chronicle — Playbill - 2000s">
+      </div>
+      <div class="poster-divider"></div>
+      <div class="poster-wrap">
+        <img src="poster2.png" alt="Jack and Diane: A Heartland Chronicle — Playbill - 2026">
+      </div>
     </div>
   </div>
   <nav class="doc-nav">
